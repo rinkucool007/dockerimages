@@ -1,0 +1,15 @@
+FROM oraclelinux:8
+# Install Node.js 14.x
+RUN curl -sL https://rpm.nodesource.com/setup_14.x | bash - && \
+    yum install -y nodejs
+
+RUN yum install -y wget
+# Install Chrome browser
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm && \
+    yum install -y ./google-chrome-stable_current_x86_64.rpm && \
+    rm -f ./google-chrome-stable_current_x86_64.rpm
+	
+# Display version
+RUN node -v
+RUN npm -v
+RUN google-chrome-stable --version
